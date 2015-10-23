@@ -1,0 +1,15 @@
+{
+  "name": "neo4j-browser-e2e-tests",
+  "version": "0.0.1",
+  "description": "",
+  "main": "local.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "protractor": "~1.8",
+    "coffee-script": "^1.9.2"
+  }
+}
