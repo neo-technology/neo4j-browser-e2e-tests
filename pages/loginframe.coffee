@@ -13,14 +13,15 @@ class LoginFrame
   defaultLogin: ->
     expect(element(byUsername).getAttribute('value')).toBe "neo4j"
 
-    element(byPassword ).sendKeys("neo4j")
-    element(byPassword ).sendKeys(protractor.Key.RETURN)
+    element(byPassword).sendKeys("neo4j")
+    element(byPassword).sendKeys(protractor.Key.RETURN)
     browser.driver.wait(protractor.until.elementIsVisible(element(byNewPassword)))
 
   setNewLogin: (password) ->
     expect(element(byNewPassword).waitReady()).toBeTruthy()
     element(byNewPassword).sendKeys(password)
     element(byNewPasswordConfirmation).sendKeys(password)
+    element(byNewPasswordConfirmation).sendKeys(protractor.Key.RETURN)
     browser.driver.wait(protractor.until.elementIsNotVisible(element(byNewPassword)))
 
   login: (username, password) ->

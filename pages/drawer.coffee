@@ -6,20 +6,25 @@ class Drawer
   byFavorite = By.css("#leftbar .fa-star")
   byHeading = By.css(".pane h5")
   byPair = By.css(".pair")
+  byDrawer = By.id("drawer")
+  byPaneUl = By.css(".pane ul")
 
   constructor: ->
 
   openOverview: ->
     element(byOverview).click()
-    expect(element(By.id("drawer")).isDisplayed()).toBeTruthy()
+    browser.sleep 2000
+    expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   openFavorties: ->
     element(byFavorite).click()
-    waitForAnimationToFinish()
+    browser.sleep 2000
+    expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   openInfo: ->
     element(byInfo).click()
-    waitForAnimationToFinish()
+    browser.sleep 2000
+    expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   getAllLinks: ->
     element.all(By.css(".pane a")).filter( (elem, i) ->
@@ -30,16 +35,18 @@ class Drawer
     element.all(byPair)
 
   getPanes: ->
-    guides: element.all(By.css(".pane ul")).get(0)
-    reference: element.all(By.css(".pane ul")).get(1)
-    examples: element.all(By.css(".pane ul")).get(2)
-    help: element.all(By.css(".pane ul")).get(3)
-
+    browser.sleep 1000
+    panes = element.all(byPaneUl)
+    guides: panes.get(0)
+    reference: panes.get(1)
+    examples: panes.get(2)
+    helpSection: panes.get(3)
 
   headings: ->
     element.all(byHeading)
 
   waitForAnimationToFinish= () ->
-    browser.sleep(500)
+    browser.sleep 2000
+    expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
 module.exports = Drawer

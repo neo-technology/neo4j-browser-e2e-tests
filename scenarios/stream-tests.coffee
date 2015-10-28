@@ -4,7 +4,6 @@ describe 'Stream', () ->
   page = new Page()
 
   it 'should focus on editor when pressing /', ->
-    console.log browser.browserName
     unless browser.browserName is "firefox" or browser.browserName is "safari"
       page.keyPress("/testtesttesttesttesttest").then(->
       expect(element(By.css(".CodeMirror-code")).getText()).toContain "test")
@@ -16,15 +15,17 @@ describe 'Stream', () ->
       expect(page.latestFrame().taskRan()).toBe ":play movies"
     )
 
-  it 'should pin frame', ->
+  it 'should pin and close frame', ->
     page.editor(":clear")
     expect(page.getFrameCount()).toBe 0
 
     page.editor(":play movies")
     expect(page.latestFrame().taskRan()).toBe ":play movies"
+    page.latestFrame().pin()
     expect(page.getFrameCount()).toBe 1
+
     page.editor(":play northwind graph")
-    expect(page.latestFrame().taskRan()).toBe ":play northwind graph"
+    expect(page.latestFrame().taskRan()).toBe ":play movies"
     expect(page.getFrameCount()).toBe 2
 
     page.latestFrame().close()

@@ -1,4 +1,5 @@
 require( 'coffee-script/register' );
+var ScreenShotReporter = require('protractor-screenshot-reporter');
 
 exports.config = {
     onPrepare: function ()
@@ -9,17 +10,23 @@ exports.config = {
         {
             browser.browserName = cap.caps_.browserName;
         } );
+
+        jasmine.getEnv().addReporter(new ScreenShotReporter({
+            baseDirectory: '/tmp/screenshots',
+            takeScreenShotsOnlyForFailedSpecs: true
+        }));
     },
-    baseUrl: 'http://localhost:7070/',
+    baseUrl: 'http://localhost:7474/',
     rootElement: 'html',
     multiCapabilities: [
         {
-            'browserName': 'chrome',
-            'name': 'Chrome'
+            browserName: 'chrome',
+            name: 'Chrome'
         }
     ],
     specs: [
         './pages/*.coffee',
+        './scenarios/initialise-tests.coffee',
         './scenarios/login-tests.coffee',
         './scenarios/stream-tests.coffee',
         './scenarios/drawer-tests.coffee',
@@ -30,7 +37,7 @@ exports.config = {
 
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 30000
+        defaultTimeoutInterval: 120000
     },
     maxSessions: 1
 };
