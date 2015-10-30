@@ -16,7 +16,7 @@ exports.config = {
     sauceKey: process.env.SAUCE_ACCESS_KEY,
     baseUrl: process.env.BASE_URL,
     rootElement: 'html',
-    //maxSessions: 3,
+    maxSessions: 1,
     framework: 'jasmine',
     multiCapabilities: [
         {
