@@ -28,7 +28,9 @@ function check_previous_status_code {
     return $status
 }
 
-#protractor init.js --baseUrl=$URL
-#check_previous_status_code
-protractor sauce.js --baseUrl=$URL
+node ./node_modules/protractor/bin/webdriver-manager update
+
+node node_modules/protractor/bin/protractor init.js --baseUrl=$URL
+check_previous_status_code
+node node_modules/protractor/bin/protractor sauce.js --baseUrl=$URL
 check_previous_status_code

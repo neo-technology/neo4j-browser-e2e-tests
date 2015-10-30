@@ -8,4 +8,6 @@ else
   echo "Using url: $URL"
 fi
 
-protractor local.js --baseUrl=$URL
+node ./node_modules/protractor/bin/webdriver-manager update
+
+node node_modules/protractor/bin/protractor local.js --baseUrl=$URL
