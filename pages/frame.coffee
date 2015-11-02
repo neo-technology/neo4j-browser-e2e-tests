@@ -39,9 +39,9 @@ class Frame
     browser.sleep 500
 
   tabIsOpen: ->
-#    browser.sleep 2000
-    browser.driver.wait(protractor.until.elementIsVisible(element(byLeftFrameTabs).element(byActiveTab)))
-    element.all(byLeftFrameTabs).first().element(byActiveTab).getText()
+    browser.sleep 2000
+    expect(element.all(byLeftFrameTabs).first().waitReady()).toBeTruthy()
+    element(byLeftFrameTabs).element(byActiveTab).getText()
 
   downloadSVG:->
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).click()
