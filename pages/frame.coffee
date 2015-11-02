@@ -15,7 +15,7 @@ class Frame
     expect(element.all(byFrame).first().waitReady()).toBeTruthy()
 
   taskRan: ->
-    browser.sleep 500
+    browser.sleep 2000
     element.all(byFrame).first().element(byTaskRan).getText()
 
   pin: ->
@@ -28,19 +28,20 @@ class Frame
 
   navigateRight: ->
     element.all(byFrame).first().element(byRight).click()
-    browser.sleep 500
+    browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
+    browser.sleep 2000
 
   getNavigateLeft: ->
+    browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
     element.all(byFrame).first().element(byLeft)
 
   selectCypher: ->
-    browser.sleep 500
+    browser.sleep 2000
     element.all(byFrame).first().element(byCypher).click()
-    browser.sleep 500
+    browser.sleep 2000
 
   tabIsOpen: ->
-    browser.sleep 2000
-    expect(element.all(byLeftFrameTabs).first().waitReady()).toBeTruthy()
+    browser.sleep 4000
     element(byLeftFrameTabs).element(byActiveTab).getText()
 
   downloadSVG:->
@@ -58,5 +59,8 @@ class Frame
   downloadCSV:->
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).click()
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).element(By.cssContainingText("Export CSV"))
+
+  @waitUntilLoaded: ->
+    browser.driver.wait(protractor.until.elementIsNotVisible(element(By.css(".spinner"))))
 
 module.exports = Frame

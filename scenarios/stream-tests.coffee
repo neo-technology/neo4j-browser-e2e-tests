@@ -34,6 +34,7 @@ describe 'Stream', () ->
 
 
   it 'should be able to execute query from a frame', ->
+    page.editor(":clear")
     page.editor(":play movie graph")
     expect(page.latestFrame().taskRan()).toBe ":play movie graph"
 
@@ -41,10 +42,13 @@ describe 'Stream', () ->
     expect(page.latestFrame().getNavigateLeft().isDisplayed()).toBe true
 
     page.latestFrame().selectCypher()
-    query = page.getEditor().getQuery().getText()
+    expect(page.getEditor().getQuery().getText()).toContain "CREATE"
     page.getEditor().submit()
 
-    expect(page.latestFrame().taskRan()).toContain query
+    browser.sleep 2000
+
+    # We should assert against the query from the guide frame (pe4cey)
+    expect(page.latestFrame().taskRan()).toContain "CREATE"
 
 #    expect(page.latestFrame().tabIsOpen()).toBe "Graph"
 

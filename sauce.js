@@ -19,12 +19,12 @@ exports.config = {
     maxSessions: 1,
     framework: 'jasmine',
     multiCapabilities: [
-        {
-            browserName: 'chrome',
-            platform: 'OS X 10.10',
-            name: 'Chrome-Mac',
-            build: process.env.PROTRACTOR_BUILD_NUMBER
-        },
+        //{
+        //    browserName: 'chrome',
+        //    platform: 'OS X 10.10',
+        //    name: 'Chrome-Mac',
+        //    build: process.env.PROTRACTOR_BUILD_NUMBER
+        //},
         {
             browserName: 'chrome',
             platform: 'Windows 8.1',
