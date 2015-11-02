@@ -46,7 +46,7 @@ describe 'Stream', () ->
 
     expect(page.latestFrame().taskRan()).toContain query
 
-    expect(page.latestFrame().tabIsOpen()).toBe "Graph"
+#    expect(page.latestFrame().tabIsOpen()).toBe "Graph"
 
 #  it 'should go through history using up and down keys in the editor', ->
 #    page.editor(":help")
