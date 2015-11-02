@@ -4,6 +4,7 @@ describe 'Drawer', () ->
   page = new Page()
 
   it 'should have defaults in overview draw', ->
+
     drawer = page.getDrawer()
     drawer.openOverview()
     keyValues = page.getDrawer().getPairs().first()
