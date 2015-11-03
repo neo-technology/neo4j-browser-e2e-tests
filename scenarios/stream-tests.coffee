@@ -42,25 +42,11 @@ describe 'Stream', () ->
     expect(page.latestFrame().getNavigateLeft().isDisplayed()).toBe true
 
     page.latestFrame().selectCypher()
-    expect(page.getEditor().getQuery().getText()).toContain "CREATE"
+    query = page.getEditor().getQuery().getText()
+    expect(query).toContain "CREATE"
     page.getEditor().submit()
 
     browser.sleep 2000
 
     # We should assert against the query from the guide frame (pe4cey)
-    expect(page.latestFrame().taskRan()).toContain "CREATE"
-
-#    expect(page.latestFrame().tabIsOpen()).toBe "Graph"
-
-#  it 'should go through history using up and down keys in the editor', ->
-#    page.editor(":help")
-#    expect(page.latestFrame().taskRan()).toBe ":help"
-#    page.editor(":config")
-#    expect(page.latestFrame().taskRan()).toBe ":config"
-#    page.keyPress("/")
-#    page.getEditor().historyUp()
-#    expect(page.getEditor().getQuery()).toBe ":config"
-#    page.getEditor().historyUp()
-#    expect(page.getEditor().getQuery()).toBe ":help"
-#    page.getEditor().historyDown()
-#    expect(page.getEditor().getQuery()).toBe ":config"
+    expect(page.latestFrame().taskRan()).toContain query
