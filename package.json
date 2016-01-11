@@ -2,7 +2,7 @@
   "name": "neo4j-browser-e2e-tests",
   "version": "0.0.1",
   "description": "",
-  "main": "local.js",
+  "main": "tests.js",
   "scripts": {
     "test": ""
   },

@@ -1,5 +1,4 @@
 require( 'coffee-script/register' );
-var ScreenShotReporter = require('protractor-screenshot-reporter');
 
 exports.config = {
     onPrepare: function ()
@@ -11,10 +10,6 @@ exports.config = {
             browser.browserName = cap.caps_.browserName;
         } );
 
-        jasmine.getEnv().addReporter(new ScreenShotReporter({
-            baseDirectory: '/tmp/screenshots',
-            takeScreenShotsOnlyForFailedSpecs: true
-        }));
     },
     baseUrl: 'http://localhost:7474/',
     rootElement: 'html',

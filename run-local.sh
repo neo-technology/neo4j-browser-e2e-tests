@@ -10,4 +10,4 @@ fi
 
 node ./node_modules/protractor/bin/webdriver-manager update
 
-node node_modules/protractor/bin/protractor local.js --baseUrl=$URL
+node node_modules/protractor/bin/protractor tests.js --baseUrl=$URL

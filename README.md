@@ -9,12 +9,12 @@ npm install
 ## Running locally (single browser)
 
 ```
-./run-locally
+./run-local
 ```
 or
 
 ```
-./run-locally <url_and_port>
+./run-local <url_and_port>
 ```
 
 ## Running locally (against saucelabs)
