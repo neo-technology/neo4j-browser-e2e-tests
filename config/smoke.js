@@ -12,10 +12,7 @@ exports.config = {
         } );
     },
 
-    sauceUser: process.env.SAUCE_USERNAME,
-    sauceKey: process.env.SAUCE_ACCESS_KEY,
-    baseUrl: process.env.BASE_URL,
-    rootElement: 'html',
+    sootElement: 'html',
     maxSessions: 1,
     framework: 'jasmine',
     capabilities: {
@@ -25,10 +22,10 @@ exports.config = {
         build: process.env.PROTRACTOR_BUILD_NUMBER
     },
     specs: [
-        './pages/*.coffee',
-        './scenarios/login-tests.coffee',
-        './scenarios/stream-tests.coffee',
-        './scenarios/drawer-tests.coffee'
+        './../pages/*.coffee',
+        './../scenarios/login-tests.coffee',
+        './../scenarios/stream-tests.coffee',
+        './../scenarios/drawer-tests.coffee'
     ],
     jasmineNodeOpts: {
         showColors: true,

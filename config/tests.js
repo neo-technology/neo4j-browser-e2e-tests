@@ -13,10 +13,12 @@ exports.config = {
     },
     baseUrl: 'http://localhost:7474/',
     rootElement: 'html',
-    capabilities:
-    {
-        browserName: 'chrome',
-        name: 'Chrome'
+    capabilities: {
+      browserName: 'phantomjs',
+      version: '',
+      platform: 'ANY',
+      'phantomjs.binary.path':'node_modules/phantomjs/bin/phantomjs',
+      'phantomjs.ghostdriver.cli.args': ['--loglevel=DEBUG']
     },
     specs: [
         './../pages/*.coffee',

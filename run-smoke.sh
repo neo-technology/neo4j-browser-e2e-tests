@@ -4,16 +4,6 @@ URL="http://localhost:7474"
 
 DIR=$(dirname $0)
 
-if [ -z ${SAUCE_USERNAME+x} ]; then
-  echo "SAUCE_USERNAME is unset";
-  exit 1;
-fi
-
-if [ -z ${SAUCE_ACCESS_KEY+x} ]; then
-  echo "SAUCE_ACCESS_KEY is unset";
-  exit 1;
-fi
-
 if [ -z $1 ]; then
   echo "Using default url: $URL"
 else

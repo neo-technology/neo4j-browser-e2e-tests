@@ -37,7 +37,7 @@ fi
 
 pushd $WORKBENCH_LOCATION
 
-ESTATE=$(./neo-workbench estate add database   --platform aws --size 1)
+ESTATE=$(./neo-workbench estate add database --platform aws --size 1)
 ESTATE_FILE=$(echo $ESTATE | cut -c 6-)
 
 
