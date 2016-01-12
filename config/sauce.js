@@ -73,10 +73,10 @@ exports.config = {
         //}
     ],
     specs: [
-        './pages/*.coffee',
-        './scenarios/login-tests.coffee',
-        './scenarios/stream-tests.coffee',
-        './scenarios/drawer-tests.coffee'
+        './../pages/*.coffee',
+        './../scenarios/login-tests.coffee',
+        './../scenarios/stream-tests.coffee',
+        './../scenarios/drawer-tests.coffee'
     ],
     jasmineNodeOpts: {
         showColors: true,

@@ -32,5 +32,5 @@ function check_previous_status_code {
 
 node ./$DIR/node_modules/protractor/bin/webdriver-manager update
 
-node ./$DIR/node_modules/protractor/bin/protractor $DIR/tests.js --baseUrl=$URL
+node ./$DIR/node_modules/protractor/bin/protractor $DIR/config/tests.js --baseUrl=$URL
 check_previous_status_code
