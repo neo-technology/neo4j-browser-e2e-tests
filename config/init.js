@@ -20,13 +20,13 @@ exports.config = {
     multiCapabilities: [
         {
             browserName: 'chrome',
-            platform: 'OS X 10.10',
+            // platform: 'OS X 10.10',
             name: 'Chrome-Mac'
         }
     ],
     specs: [
-        './pages/*.coffee',
-        './scenarios/initialise-tests.coffee'
+        './../pages/*.coffee',
+        './../scenarios/initialise-tests.coffee'
     ],
     jasmineNodeOpts: {
         showColors: true,

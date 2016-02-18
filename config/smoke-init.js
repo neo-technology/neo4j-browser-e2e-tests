@@ -6,8 +6,8 @@ exports.config = {
     {
         global.Settings = {
           defaultTimeout: 500,
-          shortTimeout: 250,
-          longTimeout: 1000
+          shortTimeout: 500,
+          longTimeout: 500
         }
         global.By = protractor.By;
         browser.ignoreSynchronization = true;
@@ -26,6 +26,7 @@ exports.config = {
     },
     specs: [
         './../pages/*.coffee',
+        './../scenarios/initialise-tests.coffee',
         './../scenarios/login-tests.coffee',
         './../scenarios/stream-tests.coffee',
         './../scenarios/drawer-tests.coffee'

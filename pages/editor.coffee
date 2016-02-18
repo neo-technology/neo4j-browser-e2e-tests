@@ -9,12 +9,12 @@ class Editor
   execute: (cmd) ->
     browser.executeScript("var editor = $('.CodeMirror')[0].CodeMirror;editor.setValue('" + cmd + "');");
     @submit()
-    browser.sleep 500
+    browser.sleep Settings.defaultTimeout
 
   submit: ->
-    browser.sleep(500)
+    browser.sleep Settings.defaultTimeout
     element(bySubmit).click()
-    browser.sleep(500)
+    browser.sleep Settings.defaultTimeout
 
   getQuery: ->
     element.all(byEditor).first()

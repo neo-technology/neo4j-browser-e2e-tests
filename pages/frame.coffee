@@ -15,7 +15,7 @@ class Frame
     expect(element.all(byFrame).first().waitReady()).toBeTruthy()
 
   taskRan: ->
-    browser.sleep 2000
+    browser.sleep Settings.defaultTimeout
     element.all(byFrame).first().element(byTaskRan).getText()
 
   pin: ->

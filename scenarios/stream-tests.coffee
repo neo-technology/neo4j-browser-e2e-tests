@@ -46,7 +46,7 @@ describe 'Stream', () ->
     expect(query).toContain "CREATE"
     page.getEditor().submit()
 
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
 
     # We should assert against the query from the guide frame (pe4cey)
     expect(page.latestFrame().taskRan()).toContain query

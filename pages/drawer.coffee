@@ -13,17 +13,17 @@ class Drawer
 
   openOverview: ->
     element(byOverview).click()
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
     expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   openFavorties: ->
     element(byFavorite).click()
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
     expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   openInfo: ->
     element(byInfo).click()
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
     expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   getAllLinks: ->
@@ -35,7 +35,7 @@ class Drawer
     element.all(byPair)
 
   getPanes: ->
-    browser.sleep 1000
+    browser.sleep Settings.longTimeout
     panes = element.all(byPaneUl)
     guides: panes.get(0)
     reference: panes.get(1)
@@ -46,7 +46,7 @@ class Drawer
     element.all(byHeading)
 
   waitForAnimationToFinish= () ->
-    browser.sleep 2000
+    browser.sleep Settings.defaultTimeout
     expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
 module.exports = Drawer
