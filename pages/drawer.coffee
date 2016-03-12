@@ -10,6 +10,7 @@ class Drawer
   byPaneUl = By.css(".pane ul")
 
   constructor: ->
+    Settings.longTimeout
 
   openOverview: ->
     element(byOverview).click()
@@ -27,6 +28,7 @@ class Drawer
     expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   getAllLinks: ->
+    browser.sleep Settings.longTimeout
     element.all(By.css(".pane a")).filter( (elem, i) ->
         if elem.isDisplayed() then elem
     )
