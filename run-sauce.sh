@@ -30,7 +30,7 @@ function check_previous_status_code {
 
 node ./node_modules/protractor/bin/webdriver-manager update
 
-node node_modules/protractor/bin/protractor config/init.js --baseUrl=$URL
+node node_modules/protractor/bin/protractor config/sauce/init.js --baseUrl=$URL
 check_previous_status_code
-node node_modules/protractor/bin/protractor config/sauce.js --baseUrl=$URL
+node node_modules/protractor/bin/protractor config/sauce/sauce.js --baseUrl=$URL
 check_previous_status_code

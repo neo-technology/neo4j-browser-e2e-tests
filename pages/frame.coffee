@@ -20,29 +20,29 @@ class Frame
 
   pin: ->
     element.all(byFrame).first().element(byPin).click()
-    browser.sleep 500
+    browser.sleep Settings.defaultTimeout
 
   close: ->
     element.all(byFrame).first().element(byClose).click()
-    browser.sleep 500
+    browser.sleep Settings.defaultTimeout
 
   navigateRight: ->
     element.all(byFrame).first().element(byRight).click()
     browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
 
   getNavigateLeft: ->
     browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
     element.all(byFrame).first().element(byLeft)
 
   selectCypher: ->
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
     element.all(byFrame).first().element(byCypher).click()
-    browser.sleep 2000
+    browser.sleep Settings.longTimeout
 
   tabIsOpen: ->
-    browser.sleep 4000
-    element(byLeftFrameTabs).element(byActiveTab).getText()
+    browser.sleep Settings.longTimeout
+    element.all(byLeftFrameTabs).first().element(byActiveTab).getText()
 
   downloadSVG:->
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).click()

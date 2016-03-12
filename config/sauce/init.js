@@ -4,6 +4,11 @@ exports.config = {
 
     onPrepare: function ()
     {
+        global.Settings = {
+          defaultTimeout: 2000,
+          shortTimeout: 1000,
+          longTimeout: 4000
+        }
         global.By = protractor.By;
         browser.ignoreSynchronization = true;
         browser.getCapabilities().then( function ( cap )
@@ -18,15 +23,16 @@ exports.config = {
     rootElement: 'html',
     framework: 'jasmine',
     multiCapabilities: [
-        {
-            browserName: 'chrome',
-            // platform: 'OS X 10.10',
-            name: 'Chrome-Mac'
-        }
+      {
+          browserName: 'chrome',
+          platform: 'OS X 10.10',
+          name: 'Chrome-Mac',
+          build: process.env.PROTRACTOR_BUILD_NUMBER
+      }
     ],
     specs: [
-        './../pages/*.coffee',
-        './../scenarios/initialise-tests.coffee'
+        './../../pages/*.coffee',
+        './../../scenarios/initialise-tests.coffee'
     ],
     jasmineNodeOpts: {
         showColors: true,

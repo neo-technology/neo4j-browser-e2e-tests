@@ -6,7 +6,7 @@ describe 'Stream', () ->
   it 'should focus on editor when pressing /', ->
     unless browser.browserName is "firefox" or browser.browserName is "safari"
       page.keyPress("/testtesttesttesttesttest").then(->
-      expect(element(By.css(".CodeMirror-code")).getText()).toContain "test")
+        expect(element(By.css(".CodeMirror-code")).getText()).toContain "test")
     else
       console.log "SKIPPED in " + browser.browserName + " for now"
 

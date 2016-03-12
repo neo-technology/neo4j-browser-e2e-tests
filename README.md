@@ -4,7 +4,6 @@
 
 ```
 npm install
-XQuartz (xvfb)
 ```
 
 ## Running locally (single browser)
