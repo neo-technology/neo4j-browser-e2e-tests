@@ -1,6 +1,9 @@
 require('./waitReady')
 
 class Frame
+  EC = protractor.ExpectedConditions
+
+  thisElement = null
   byTaskRan = By.css('.code.mono')
   byPin = By.css(".button.fa.fa-thumb-tack")
   byRight = By.css('.right')
@@ -10,39 +13,42 @@ class Frame
   byFrame = By.css('.frame')
   byLeftFrameTabs = By.css('.left-frame-toggle')
   byActiveTab = By.css('.active')
+  byViewResultError = By.css('.view-result-error')
 
   constructor: () ->
-    expect(element.all(byFrame).first().waitReady()).toBeTruthy()
+    thisElement = element.all(byFrame).first()
+    expect(thisElement.waitReady()).toBeTruthy()
 
   taskRan: ->
     browser.sleep Settings.defaultTimeout
-    element.all(byFrame).first().element(byTaskRan).getText()
+    thisElement.element(byTaskRan).getText()
 
   pin: ->
-    element.all(byFrame).first().element(byPin).click()
-    browser.sleep Settings.defaultTimeout
+    thisElement.element(byPin).click()
 
   close: ->
-    element.all(byFrame).first().element(byClose).click()
-    browser.sleep Settings.defaultTimeout
+    waitForStreamChangeWhen(thisElement.element(byClose), 'click')
 
   navigateRight: ->
-    element.all(byFrame).first().element(byRight).click()
+    thisElement.element(byRight).click()
     browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
     browser.sleep Settings.longTimeout
 
   getNavigateLeft: ->
     browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
-    element.all(byFrame).first().element(byLeft)
+    thisElement.element(byLeft)
 
   selectCypher: ->
     browser.sleep Settings.longTimeout
-    element.all(byFrame).first().element(byCypher).click()
+    thisElement.element(byCypher).click()
     browser.sleep Settings.longTimeout
 
   tabIsOpen: ->
-    browser.sleep Settings.longTimeout
     element.all(byLeftFrameTabs).first().element(byActiveTab).getText()
+
+  hasError: ->
+    error = $$(byViewResultError)
+    error.length > 0 && error.first().isDisplayed()
 
   downloadSVG:->
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).click()
@@ -59,5 +65,19 @@ class Frame
   downloadCSV:->
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).click()
     element(byFrame).element(By.css(".actions")).element(By.css(".fa-download")).element(By.cssContainingText("Export CSV"))
+
+  waitForStreamChangeWhen = (elem, fnName) ->
+    count = null
+    element.all(byFrame).count().then(
+      (originalCount) ->
+        elem[fnName]()
+        count = originalCount
+        browser.driver.wait(->
+          element.all(byFrame).count().then(
+            (newCount) ->
+              count != newCount
+            )
+        , Settings.longTimeout)
+    )
 
 module.exports = Frame

@@ -4,13 +4,16 @@ class Drawer
   byInfo = By.css("#leftbar .fa-info-circle")
   byOverview = By.css(".cover")
   byFavorite = By.css("#leftbar .fa-star")
-  byHeading = By.css(".pane h5")
+  bySectionHeading = By.css(".pane h5")
   byPair = By.css(".pair")
   byDrawer = By.id("drawer")
   byPaneUl = By.css(".pane ul")
+  byLinks = By.css(".pane a")
+  byHeading = By.css('.pane h4')
+  EC = protractor.ExpectedConditions
 
   constructor: ->
-    Settings.longTimeout
+    browser.driver.wait(protractor.until.elementIsVisible(element(byDrawer)))
 
   openOverview: ->
     element(byOverview).click()
@@ -28,16 +31,14 @@ class Drawer
     expect(element(byDrawer).isDisplayed()).toBeTruthy()
 
   getAllLinks: ->
-    browser.sleep Settings.longTimeout
-    element.all(By.css(".pane a")).filter( (elem, i) ->
-        if elem.isDisplayed() then elem
+    element.all(byLinks).filter((elem, i) ->
+      if elem.isDisplayed() then elem
     )
 
   getPairs: ->
     element.all(byPair)
 
   getPanes: ->
-    browser.sleep Settings.longTimeout
     panes = element.all(byPaneUl)
     guides: panes.get(0)
     reference: panes.get(1)
@@ -45,10 +46,6 @@ class Drawer
     helpSection: panes.get(3)
 
   headings: ->
-    element.all(byHeading)
-
-  waitForAnimationToFinish= () ->
-    browser.sleep Settings.defaultTimeout
-    expect(element(byDrawer).isDisplayed()).toBeTruthy()
+    element.all(bySectionHeading)
 
 module.exports = Drawer
