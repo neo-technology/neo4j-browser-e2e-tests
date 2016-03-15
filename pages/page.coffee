@@ -16,7 +16,6 @@ class Page
     browser.driver.wait(protractor.until.elementIsVisible(element(By.css('.frame'))) )
 
   latestFrame: ->
-    browser.sleep 500
     new Frame()
 
   getDrawer: ->
