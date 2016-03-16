@@ -2,8 +2,7 @@ Frame = require('./frame')
 LoginFrame = require('./loginframe')
 Editor = require('./editor')
 Drawer = require('./drawer')
-
-require('./waitReady')
+Stream = require('./stream')
 
 class Page
   byFrame = By.css('.frame')
@@ -26,7 +25,12 @@ class Page
 
   editor: (cmd) ->
     editor = new Editor()
-    editor.execute(cmd)
+    @getStream().waitForStreamChangeWhen(editor, 'execute', cmd)
+
+  clear: ->
+    editor = new Editor()
+    editor.execute(":clear")
+    @getStream().waitForStreamToBeClear()
 
   getEditor: ->
     new Editor()
@@ -36,5 +40,8 @@ class Page
 
   getFrameCount: ->
     element.all(byFrame).count()
+
+  getStream: ->
+    new Stream()
 
 module.exports = Page
