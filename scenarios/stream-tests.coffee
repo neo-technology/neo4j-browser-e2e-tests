@@ -4,7 +4,7 @@ describe 'Stream', () ->
   page = new Page()
 
   beforeEach ->
-    page.editor(":clear")
+    page.clear()
     expect(page.getFrameCount()).toBe 0
 
   it 'should focus on editor when pressing /', ->

@@ -5,7 +5,7 @@ describe 'Drawer', () ->
   drawer = null
 
   beforeEach ->
-    page.editor(":clear")
+    page.clear()
     expect(page.getFrameCount()).toBe 0
 
   it 'should have defaults in overview draw', ->

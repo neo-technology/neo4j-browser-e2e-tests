@@ -31,7 +31,8 @@ class Frame
 
   navigateRight: ->
     thisElement.element(byRight).click()
-    browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
+#    browser.driver.wait(protractor.until.locatedBy(byLeft), Settings.longTimeout)
+#    browser.driver.wait(protractor.until.elementIsVisible(element(byLeft)))
     browser.sleep Settings.longTimeout
 
   getNavigateLeft: ->
