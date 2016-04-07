@@ -13,17 +13,14 @@ describe 'Drawer', () ->
     drawer.openOverview()
 
     drawer.getAllLinks().each ((elem) ->
-      elem.click()
-      expect(page.latestFrame().hasError()).toBe no
+      elem.click().then ->
+        expect(page.latestFrame().hasError()).toBe no
     )
 
   describe 'should have content in info drawer', ->
 
-    beforeAll ->
-      drawer = page.getDrawer()
-      drawer.openInfo()
-
     it 'should have expected sections', ->
+      drawer.openInfo()
       expect(element.all(By.css(".pane ul")).count()).toBe 4
       panes = drawer.getPanes()
       expect(panes).not.toBe {} || `undefined`
@@ -40,9 +37,9 @@ describe 'Drawer', () ->
       links.each (elem) ->
         text = elem.getText()
         expect(text).not.toBe `undefined`
-        elem.click()
-        expect(page.latestFrame().hasError()).toBe no
-        expect(page.latestFrame().taskRan()).toContain elem.getAttribute("play-topic")
+        elem.click().then ->
+          expect(page.latestFrame().hasError()).toBe no
+          expect(page.latestFrame().taskRan()).toContain elem.getAttribute("play-topic")
 
     it 'should have working `references` in info drawer', ->
       panes = page.getDrawer().getPanes()
@@ -51,6 +48,7 @@ describe 'Drawer', () ->
           expect(url).toContain "neo4j.com/"
         )
       )
+
     it 'should have working `examples` in info drawer', ->
       panes = page.getDrawer().getPanes()
       panes.examples.all(By.css("a")).each((elem)->
@@ -61,6 +59,7 @@ describe 'Drawer', () ->
           )
         )
       )
+
     it 'should have working `help` in info drawer', ->
       panes = page.getDrawer().getPanes()
 

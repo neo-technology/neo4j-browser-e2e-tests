@@ -2,10 +2,14 @@ require('./waitReady')
 
 class Editor
   bySubmit = By.css(".balled.success.active")
-  byEditor = By.css(".CodeMirror-code pre")
+  byEditorText = By.css(".CodeMirror-code pre")
+  byEditor = By.css(".CodeMirror-code")
   EC = protractor.ExpectedConditions
 
   constructor: () ->
+    @editor = element(byEditor)
+    if Version is '3.0'
+      bySubmit = By.css(".play.active")
 
   execute: (cmd) ->
     browser.executeScript("var editor = $('.CodeMirror')[0].CodeMirror;editor.setValue('" + cmd + "');");
@@ -13,11 +17,13 @@ class Editor
 
   submit: ->
     browser.driver.wait(EC.presenceOf(element(bySubmit)), Settings.longTimeout)
-    element(bySubmit).click()
-
+    element(By.css(".sl-play.active")).click()
 
   getQuery: ->
-    element.all(byEditor).first()
+    element.all(byEditorText).first()
+
+  getContent: ->
+    @editor.getText()
 
   historyUp: ->
     element(By.css("#editor")).click()
