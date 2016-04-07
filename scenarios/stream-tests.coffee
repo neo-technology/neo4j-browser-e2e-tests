@@ -10,7 +10,7 @@ describe 'Stream', () ->
   it 'should focus on editor when pressing /', ->
     unless browser.browserName is "firefox" or browser.browserName is "safari"
       page.keyPress("/testtesttesttesttesttest")
-      expect(element(By.css(".CodeMirror-code")).getText()).toContain "test"
+      expect(page.getEditor().getContent()).toContain "test"
     else
       console.log "SKIPPED in " + browser.browserName + " for now"
 
@@ -46,5 +46,5 @@ describe 'Stream', () ->
     expect(query).toContain "CREATE"
     page.getEditor().submit()
 
-    # We should assert against the query from the guide frame (pe4cey)
+    page.latestFrame().loadToComplete()
     expect(page.latestFrame().taskRan()).toContain query

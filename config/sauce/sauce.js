@@ -5,11 +5,14 @@ exports.config = {
     onPrepare: function ()
     {
         global.Settings = {
-          defaultTimeout: 500,
-          shortTimeout: 250,
-          longTimeout: 1000
+          defaultTimeout: 5000,
+          shortTimeout: 2500,
+          longTimeout: 5000,
+          longRunningQueryTimeout: 10000
         }
         global.By = protractor.By;
+        global.Version = '3.0';
+        global.Remote = true;
         browser.ignoreSynchronization = true;
         browser.getCapabilities().then( function ( cap )
         {
@@ -30,45 +33,45 @@ exports.config = {
             name: 'Chrome-Mac',
             build: process.env.PROTRACTOR_BUILD_NUMBER
         },
-        // {
-        //     browserName: 'chrome',
-        //     platform: 'Windows 8.1',
-        //     name: 'Chrome-Windows',
-        //     build: process.env.PROTRACTOR_BUILD_NUMBER
-        // },
-        // {
-        //     browserName: 'firefox',
-        //     version: '41',
-        //     platform: 'OS X 10.10',
-        //     name: 'FireFox-Mac',
-        //     build: process.env.PROTRACTOR_BUILD_NUMBER
-        // },
-        // {
-        //     browserName: 'firefox',
-        //     platform: 'Windows 8.1',
-        //     name: 'FireFox-Windows',
-        //     build: process.env.PROTRACTOR_BUILD_NUMBER
-        // },
-        // {
-        //     browserName: 'safari',
-        //     version: '9.0',
-        //     platform: 'OS X 10.11',
-        //     name: 'Safari-Mac',
-        //     build: process.env.PROTRACTOR_BUILD_NUMBER
-        // },
-        // {
-        //     browserName: 'internet explorer',
-        //     version: '11',
-        //     platform: 'Windows 8.1',
-        //     name: 'IE11-Windows',
-        //     build: process.env.PROTRACTOR_BUILD_NUMBER
-        // },
-        // {
-        //     browserName: 'internet explorer',
-        //     version: '10',
-        //     name: 'IE10-Windows 10',
-        //     build: process.env.PROTRACTOR_BUILD_NUMBER
-        // },
+        {
+            browserName: 'chrome',
+            platform: 'Windows 8.1',
+            name: 'Chrome-Windows',
+            build: process.env.PROTRACTOR_BUILD_NUMBER
+        },
+        {
+            browserName: 'firefox',
+            version: '41',
+            platform: 'OS X 10.10',
+            name: 'FireFox-Mac',
+            build: process.env.PROTRACTOR_BUILD_NUMBER
+        },
+        {
+            browserName: 'firefox',
+            platform: 'Windows 8.1',
+            name: 'FireFox-Windows',
+            build: process.env.PROTRACTOR_BUILD_NUMBER
+        },
+        {
+            browserName: 'safari',
+            version: '9.0',
+            platform: 'OS X 10.11',
+            name: 'Safari-Mac',
+            build: process.env.PROTRACTOR_BUILD_NUMBER
+        },
+        //{
+        //    browserName: 'internet explorer',
+        //    version: '11',
+        //    platform: 'Windows 8.1',
+        //    name: 'IE11-Windows',
+        //    build: process.env.PROTRACTOR_BUILD_NUMBER
+        //},
+        //{
+        //    browserName: 'internet explorer',
+        //    version: '10',
+        //    name: 'IE10-Windows 10',
+        //    build: process.env.PROTRACTOR_BUILD_NUMBER
+        //},
         //{
         //    browserName: 'microsoftedge',
         //    platform: 'Windows 10',
@@ -81,7 +84,8 @@ exports.config = {
         './../../pages/*.coffee',
         './../../scenarios/login-tests.coffee',
         './../../scenarios/stream-tests.coffee',
-        // './../../scenarios/drawer-tests.coffee'
+        //'./../../scenarios/drawer-tests.coffee',
+        './../../scenarios/known-command-tests.coffee'
     ],
     jasmineNodeOpts: {
         showColors: true,

@@ -6,13 +6,20 @@ Stream = require('./stream')
 
 class Page
   byFrame = By.css('.frame')
+  byMessageBar = By.css('.message-bar')
 
   constructor: ->
 
   visit: ->
     browser.get '/'
     expect(element(byFrame).waitReady()).toBeTruthy()
-    browser.driver.wait(protractor.until.elementIsVisible(element(By.css('.frame'))) )
+    browser.driver.wait(protractor.until.elementIsVisible(element(By.css('.frame'))))
+
+  clickMessageBar: ->
+    browser.driver.wait(protractor.until.elementIsVisible(element(byMessageBar)))
+    element(byMessageBar).click()
+    editor = new Editor()
+    editor.submit()
 
   latestFrame: ->
     new Frame()

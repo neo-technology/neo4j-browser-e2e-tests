@@ -2,6 +2,7 @@
 
 TEST_LOCATION=$(pwd)
 WORKBENCH_LOCATION=""
+PACKAGE_URI=""
 
 function finish {
   pushd $WORKBENCH_LOCATION
@@ -28,28 +29,26 @@ else
 fi
 
 if [ -z $2 ]; then
-  printf "Default run"
+  printf "Version of neo4j not specified"
   trap finish EXIT
 else
-  printf "Will NOT terminate estate after run"
+  PACKAGE_URI=$2
+  printf "Running version $PACKAGE_URI"
+  trap finish EXIT
 fi
-
 
 pushd $WORKBENCH_LOCATION
 
-ESTATE=$(./neo-workbench estate add database --platform aws --size 1)
+ESTATE=$(./neo-workbench estate add database --platform aws --size 1 --database:jvm java8)
 ESTATE_FILE=$(echo $ESTATE | cut -c 6-)
 
-
-ESTATE_FILE=$(echo $ESTATE | cut -c 6-)
 BASE_URL=$(cat $ESTATE_FILE | python -c 'import sys, json; print json.load(sys.stdin)["estate"]["blocks"][0]["machines"][0]["publicDnsName"]')
 BASE_URL="http://$BASE_URL:7474"
-
-./neo-workbench database install --mode Single --version 2.3.0 $ESTATE
+./neo-workbench database install --mode Single --package-uri "$VERSION" $ESTATE
 ./neo-workbench database start $ESTATE --password neo4j &
 
 echo "Waiting for neo4j to be available"
 sleep 60
 
 popd
-./run-sauce.sh $BASE_URL
+./scripts/run-sauce.sh $BASE_URL

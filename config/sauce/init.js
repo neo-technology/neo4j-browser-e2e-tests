@@ -7,9 +7,12 @@ exports.config = {
         global.Settings = {
           defaultTimeout: 2000,
           shortTimeout: 1000,
-          longTimeout: 4000
+          longTimeout: 4000,
+          longRunningQueryTimeout: 10000
         }
         global.By = protractor.By;
+        global.Version = '3.0';
+        global.Remote = true;
         browser.ignoreSynchronization = true;
         browser.getCapabilities().then( function ( cap )
         {
