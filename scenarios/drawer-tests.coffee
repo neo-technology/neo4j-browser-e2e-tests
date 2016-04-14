@@ -21,13 +21,12 @@ describe 'Drawer', () ->
 
     it 'should have expected sections', ->
       drawer.openInfo()
-      expect(element.all(By.css(".pane ul")).count()).toBe 4
+      expect(element.all(By.css(".pane ul")).count()).toBe 3
       panes = drawer.getPanes()
       expect(panes).not.toBe {} || `undefined`
 
       expect(panes.guides.all(By.css("a")).count()).toBe 3
       expect(panes.reference.all(By.css("a")).count()).toBe 4
-      expect(panes.examples.all(By.css("a")).count()).toBe 3
       expect(panes.helpSection.all(By.css("a")).count()).toBe 4
 
     it 'should have working `guides` in info drawer', ->
@@ -49,17 +48,6 @@ describe 'Drawer', () ->
         )
       )
 
-    it 'should have working `examples` in info drawer', ->
-      panes = page.getDrawer().getPanes()
-      panes.examples.all(By.css("a")).each((elem)->
-        elem.click().then(->
-          elem.getAttribute("play-topic").then((attribute) ->
-            expect(page.latestFrame().hasError()).toBe no
-            expect(page.latestFrame().taskRan()).toContain attribute.split("-").join(" ")
-          )
-        )
-      )
-
     it 'should have working `help` in info drawer', ->
       panes = page.getDrawer().getPanes()
 
@@ -70,8 +58,8 @@ describe 'Drawer', () ->
         )
       )
 
-  it 'should only have two folders default saved script folders', ->
+  it 'should only have four folders default saved script folders', ->
     drawer = page.getDrawer()
     drawer.openFavorties()
 
-    expect(drawer.headings().count()).toBe 4
+    expect(drawer.headings().count()).toBe 6
