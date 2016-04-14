@@ -58,8 +58,7 @@ class Drawer
     panes = element.all(byPaneUl)
     guides: panes.get(0)
     reference: panes.get(1)
-    examples: panes.get(2)
-    helpSection: panes.get(3)
+    helpSection: panes.get(2)
 
   headings: ->
     element.all(bySectionHeading)
