@@ -10,5 +10,5 @@ fi
 
 node ./node_modules/protractor/bin/webdriver-manager update
 
-node ./node_modules/protractor/bin/protractor config/local/smoke-init.js --baseUrl=$URL
+#node ./node_modules/protractor/bin/protractor config/local/smoke-init.js --baseUrl=$URL
 node ./node_modules/protractor/bin/protractor config/local/smoke.js --baseUrl=$URL
