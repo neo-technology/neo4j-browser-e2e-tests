@@ -58,8 +58,8 @@ describe 'Drawer', () ->
         )
       )
 
-  it 'should only have four folders default saved script folders', ->
+  it 'should have four default folders and 3 headings', ->
     drawer = page.getDrawer()
     drawer.openFavorties()
 
-    expect(drawer.headings().count()).toBe 6
+    expect(drawer.headings().count()).toBe 7

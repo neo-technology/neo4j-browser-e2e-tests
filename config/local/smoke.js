@@ -32,7 +32,8 @@ exports.config = {
         './../../scenarios/login-tests.coffee',
         './../../scenarios/known-command-tests.coffee',
         './../../scenarios/stream-tests.coffee',
-        './../../scenarios/drawer-tests.coffee'
+        './../../scenarios/drawer-tests.coffee',
+        './../../scenarios/sync-tests.coffee'
     ],
     jasmineNodeOpts: {
         showColors: true,

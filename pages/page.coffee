@@ -3,6 +3,7 @@ LoginFrame = require('./loginframe')
 Editor = require('./editor')
 Drawer = require('./drawer')
 Stream = require('./stream')
+SyncFrame = require('./syncframe')
 
 class Page
   byFrame = By.css('.frame')
@@ -41,6 +42,9 @@ class Page
 
   getEditor: ->
     new Editor()
+
+  getSyncFrame: ->
+    new SyncFrame()
 
   getLoginFrame: ->
     new LoginFrame()
