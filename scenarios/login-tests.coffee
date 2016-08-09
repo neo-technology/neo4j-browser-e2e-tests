@@ -9,9 +9,8 @@ describe 'Login frame', () ->
       page.visit()
       expect(page.latestFrame().taskRan()).toBe ':server connect'
 
-  it 'should load `:play neo4j-sync` first when version is 3.0', ->
+  it 'should load `:server connect` first when version is 3.0', ->
     if Version is '3.0'
-
       if Remote
         browser.get '/'
         command = ':config boltHost:"' + browser.baseUrl.replace('7474', '10000').replace('http://', '') + '"'
@@ -19,7 +18,7 @@ describe 'Login frame', () ->
         expect(page.latestFrame().taskRan()).toBe command
         browser.refresh()
       page.visit()
-      expect(page.latestFrame().taskRan()).toBe ':play neo4j-sync'
+      expect(page.latestFrame().taskRan()).toBe ':server connect'
 
   it 'should login', ->
     page.visit()
